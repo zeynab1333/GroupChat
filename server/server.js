@@ -30,10 +30,11 @@ app.use(cors({
     origin: (origin, cb) => {
         //Allow postman/curl which sends no origin
         if (!origin || allowedOrigins.includes(origin)) return cb(null,true);
+        cb(new Error('Not allowed by CORS'));
     },
     credentials: true,
     methods: 'GET, POST, PUT, DELETE',
-    allowedHeaders: 'content-Type, Authorization'
+    allowedHeaders: 'Content-Type, Authorization'
 }));
 app.use(express.json());
 
