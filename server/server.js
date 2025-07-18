@@ -17,8 +17,24 @@ const io = new Server(server, {
 // Socket.IO
 require('./socket')(io);
 
+const allowedOrigins = [
+    "http://localhost:5173", //local dev
+    "https://group-chat-black.vercel.app/"  // production
+];
+
+
+
+
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: (origin, cb) => {
+        //Allow postman/curl which sends no origin
+        if (!origin || allowedOrigins.includes(origin)) return cb(null,true);
+    },
+    credentials: true,
+    methods: 'GET, POST, PUT, DELETE',
+    allowedHeaders: 'content-Type, Authorization'
+}));
 app.use(express.json());
 
 // Routes

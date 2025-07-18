@@ -10,6 +10,8 @@ const API = axios.create({
 });
 
 
+
+
 export const registerUser = ( username )=> API.post("/auth/register", { username });
 
 export const getRooms = ()=> API.get("/rooms");
