@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 
 const BackendBaseUrl = "http://localhost:5000";
-const APIBaseUrl = "http://localhost:5000/api";
+const APIBaseUrl = import.meta.env.VITE_API_URL;
 
 const API = axios.create({
     baseURL: APIBaseUrl,
